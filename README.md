@@ -1,6 +1,6 @@
 # Distilled-Project
 # Pre-Requisites:
-1. Install Visual Studio Code: Download and Install Visual Studio Code(VSCode).
+1. Install Visual Studio Code(Preferred IDE - Optional)
 2. Install NodeJS: Download and Install Node JS.
 3. Clone this repository in local.
 4. Enter the below command to start the Playwright installation. It creates Package.json, Installs npm library.
@@ -29,10 +29,9 @@
 ![image](https://github.com/NilaShanmugam/Distilled-Project/assets/59618634/48f76c56-2acb-4a98-ac69-cd7ce2767063)
 
 
-# CI/CD Pipeline Integration
+# CI/CD Pipeline Integration to my current Repo
 
 1. Whenever there is new commit and changes are pushed to main branch "Actions" will be triggered automatically
 2. We can trigger the run manually also by using "Rerun-Jobs" in Actions Tab
 
-![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/fd1377e0-db24-4595-ac97-fc2cecc286ca)
-
+![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/c3ad853c-9308-477e-896d-34bfdfeb8111)

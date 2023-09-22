@@ -53,8 +53,11 @@ async searchAndfilterValidation(){
     var expectedCount = splittedArr[2];   
     var actualCount = actualText.toString();
     
-    console.log(actualCount);
-    console.log(splitOnSpace);
+    console.log("ACTUAL COUNT ===> "+actualCount);
+    //console.log(actualCount);
+
+    console.log("COUNT DISPLAYED ===> "+splitOnSpace);
+    //console.log(splitOnSpace);
 
 
     // Asserting whethere the result count is properly generated

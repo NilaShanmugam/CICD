@@ -18,8 +18,6 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - name: Playwright Report
-      run: npx playwright show-report
     - uses: actions/upload-artifact@v3
       if: always()
       with:

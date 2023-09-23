@@ -5,21 +5,21 @@
 3. Clone this repository in local and open the project folder in VS Code Terminal / Command Prompt
 4. Enter the below command in terminal, to start the Playwright installation. It creates Package.json, Installs npm library.
 
+
+        ```npm init playwright@latest```
+
    1. While getting started with playwright it asks for few questions as below :
    2. Do you want to use TypeScript or JavaScript? · TypeScript
    3. Where to put your end-to-end tests? · e2e
    4. Add a GitHub Actions workflow? (y/N) · true
-   5. Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
-
-
-       ```npm init playwright@latest```   
+   5. Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true        
 
 
     [**Note** : **If firefox browser is not present in your system, a popUp as below will be shown, so click "cancel" button whenever it is shown** ]
 
-     <img width="193" alt="Screenshot 2023-09-23 at 12 43 30 PM" src="https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/249c7ac0-253d-46f4-86dd-0ad5404f64b0">
+   <img width="193" alt="Screenshot 2023-09-23 at 12 43 30 PM" src="https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/249c7ac0-253d-46f4-86dd-0ad5404f64b0">
 
-5. Using the below command in terminal, you can install all different browsers in Playwright. 
+6. Using the below command in terminal, you can install all different browsers in Playwright. 
 
 
        ```npx playwright install --with-deps```

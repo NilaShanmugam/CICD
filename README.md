@@ -9,9 +9,9 @@
        ```npm init playwright@latest```   
 
 
-   [**Note** : If firefox browser is not present in your system, a popUp as below will be shown, so click "cancel" button whenever it is shown]
+    [**Note** : **If firefox browser is not present in your system, a popUp as below will be shown, so click "cancel" button whenever it is shown** ]
 
-    ![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/2f2b4061-0aea-4dfc-9234-8b50a19206f1)
+     <img width="193" alt="Screenshot 2023-09-23 at 12 43 30 PM" src="https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/249c7ac0-253d-46f4-86dd-0ad5404f64b0">
 
 5. Using the below command in terminal, you can install all different browsers in Playwright. 
 

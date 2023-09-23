@@ -3,20 +3,27 @@
 1. Install Visual Studio Code(Preferred IDE - Optional)
 2. Install NodeJS: Download and Install Node JS.
 3. Clone this repository in local and open the project folder in VS Code Terminal / Command Prompt
-4. Enter the below command in  to start the Playwright installation. It creates Package.json, Installs npm library.
+4. Enter the below command in terminal, to start the Playwright installation. It creates Package.json, Installs npm library.
 
 
-       ```npm init playwright@latest```      
+       ```npm init playwright@latest```   
+          
 
-5. Using the below command, you can install all different browsers in Playwright. 
+   [**Note** : If firefox browser is not present in your system, a popUp as below will be shown, so click "cancel" button whenever it is shown]
+
+    ![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/2f2b4061-0aea-4dfc-9234-8b50a19206f1)
+
+5. Using the below command in terminal, you can install all different browsers in Playwright. 
 
 
-       ```npx playwright install```
+       ```npx playwright install --with-deps chromium```
 
 # Folder Structure :
+
 1. page_objects : Contains all the locators of the Home Page and Properties Page
 2. page_actions : Contains the actions of all locators completing a test case scenario 
-3. tests folder: This folder contains actual test scripts. It has landing-page.spec.ts file, where I have written the code playwright.config.ts: This is the global configuration file for the Playwright, which you can configure with available options.
+3. tests folder: This folder contains actual test scripts. It has landing-page.spec.ts file, where I have written the code
+4. playwright.config.ts: This is the global configuration file for the Playwright, where you can configure with available options.
 
 # Test Execution and Results
 

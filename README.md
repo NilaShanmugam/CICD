@@ -1,9 +1,15 @@
 # Distilled-Project
 # Pre-Requisites:
 1. Install Visual Studio Code(Preferred IDE - Optional)
-2. Install NodeJS: Download and Install Node JS.
+2. Install NodeJS: Download and Install Node JS. (Use Node Version >= 16.4.2 )
 3. Clone this repository in local and open the project folder in VS Code Terminal / Command Prompt
 4. Enter the below command in terminal, to start the Playwright installation. It creates Package.json, Installs npm library.
+
+   1. While getting started with playwright it asks for few questions as below :
+   2. Do you want to use TypeScript or JavaScript? · TypeScript
+   3. Where to put your end-to-end tests? · e2e
+   4. Add a GitHub Actions workflow? (y/N) · true
+   5. Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
 
 
        ```npm init playwright@latest```   
@@ -27,14 +33,15 @@
 
 # Test Execution and Results
 
-1. Open the directory in the command prompt / in VS Code terminal
-2. Playwright runs in headless mode by default, so we specify the –headed to run on headed mode
+1. Open the directory in the command prompt / in VS Code terminal.
+2. Navigate to the test folder inside the Project and then use the below command
+3. Playwright runs in headless mode by default, so we specify the –headed to run on headed mode
 
 
 
        ```npx playwright test landing-page.spec.ts --headed```
 
-3. To open last HTML report run, use below command
+4. To open last HTML report run, use below command
 
 
 

@@ -2,12 +2,16 @@
 # Pre-Requisites:
 1. Install Visual Studio Code(Preferred IDE - Optional)
 2. Install NodeJS: Download and Install Node JS.
-3. Clone this repository in local.
-4. Enter the below command to start the Playwright installation. It creates Package.json, Installs npm library.
-       ```npm init playwright@latest```                 
-5. Using the below command, you can install all different browsers in Playwright. 
-       ```npx playwright install```
+3. Clone this repository in local and open the project folder in VS Code Terminal / Command Prompt
+4. Enter the below command in  to start the Playwright installation. It creates Package.json, Installs npm library.
 
+
+       ```npm init playwright@latest```      
+
+5. Using the below command, you can install all different browsers in Playwright. 
+
+
+       ```npx playwright install```
 
 # Folder Structure :
 1. page_objects : Contains all the locators of the Home Page and Properties Page
@@ -16,11 +20,17 @@
 
 # Test Execution and Results
 
-1. You can run the test by single command in VS Code terminal. 
-2. Playwright runs in headless mode by default, so we specify the –headed to run on headed mode.
+1. Open the directory in the command prompt / in VS Code terminal
+2. Playwright runs in headless mode by default, so we specify the –headed to run on headed mode
+
+
+
        ```npx playwright test landing-page.spec.ts --headed```
 
 3. To open last HTML report run, use below command
+
+
+
        ```npx playwright show-report```
 
 

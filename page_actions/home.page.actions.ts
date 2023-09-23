@@ -54,15 +54,11 @@ async searchAndfilterValidation(){
     var actualCount = actualText.toString();
     
     console.log("ACTUAL COUNT ===> "+actualCount);
-    //console.log(actualCount);
 
     console.log("COUNT DISPLAYED ===> "+splitOnSpace);
-    //console.log(splitOnSpace);
-
 
     // Asserting whethere the result count is properly generated
     expect(actualCount).toContain(expectedCount);
-    
     
     }
 }

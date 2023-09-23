@@ -11,7 +11,6 @@ readonly showResultsButton: Locator;
 readonly resultValue: Locator;
 
 //This file contains the locators
-
 constructor(page: Page) {
 this.page = page;
 this.searchBox = page.locator("//div[@class='HomepageSearchBox__AutosizeInputStyled-sc-9ochkc-1 bTituM']/input[@id='search-box-input']");

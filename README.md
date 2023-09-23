@@ -7,7 +7,7 @@
 
 
        ```npm init playwright@latest```   
-          
+
 
    [**Note** : If firefox browser is not present in your system, a popUp as below will be shown, so click "cancel" button whenever it is shown]
 
@@ -16,7 +16,7 @@
 5. Using the below command in terminal, you can install all different browsers in Playwright. 
 
 
-       ```npx playwright install --with-deps chromium```
+       ```npx playwright install --with-deps```
 
 # Folder Structure :
 

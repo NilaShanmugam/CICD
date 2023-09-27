@@ -37,7 +37,7 @@ export class DraftHomePageActions {
     //Filtering using the FilterAndSearchKeyWord and clicking on ShowResults button
 
     await propertyPage.keyWordSearch.fill(FilterAndSearchKeyWord);
-    await propertyPage.page.waitForTimeout(1000);
+    await propertyPage.page.waitForTimeout(500);
     await propertyPage.showResultsButton.waitFor({ state: "visible" });
     await propertyPage.showResultsButton.click();
 
@@ -72,7 +72,7 @@ export class DraftHomePageActions {
 
       // Scrolling down to the features and extracting the text
       await propertyPage.page.mouse.down();
-      await propertyPage.page.waitForTimeout(3000);
+      await propertyPage.page.waitForTimeout(1000);
       const pageContent = await propertyPage.features.allTextContents();
 
       // Checking whether the property featurs contains the FilterAndSearchKeyWord

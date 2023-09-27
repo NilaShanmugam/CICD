@@ -100,17 +100,16 @@ export class DraftHomePageActions {
       const facilityContent = await propertyPage.facilities.allTextContents();
 
       // Checking whether the property features with description contains the FilterAndSearchKeyWord
-
-      const pageContent = await (`${featureContent}`.toLowerCase() +
+      const pageContent = (`${featureContent}`.toLowerCase() +
         `${descriptionContent}`.toLowerCase() +
         `${facilityContent}`.toLowerCase());
 
-      let result = await this.stringComparison(
+      let result = this.stringComparison(
         filterAndSearchKeyWord,
         pageContent
       );
 
-      expect(result).toBeTruthy();
+      await expect(result).toBeTruthy();
     }
   }
 }

@@ -9,7 +9,7 @@ export class DraftHomePage {
   readonly showResultsButton: Locator;
   readonly resultValue: Locator;
   readonly firstPropertyOfTheResult: Locator;
-  readonly descriptionText: Locator;
+  readonly features: Locator;
 
   //This file contains the locators
   constructor(page: Page) {
@@ -22,6 +22,6 @@ export class DraftHomePage {
     this.showResultsButton = page.locator("//div/button[@data-testid='filters-modal-show-results-button']");
     this.resultValue = page.locator("//div/h1[@data-testid='search-h1']");
     this.firstPropertyOfTheResult = page.locator( "(//div/ul[@data-testid='results'])[1]");
-    this.descriptionText = page.locator("//div[@data-testid='description']");
+    this.features = page.locator("//div[@data-testid='features']");
   }
 }

@@ -8,8 +8,8 @@ export class DraftHomePageActions {
   }
 
   async searchAndfilterValidation(cityName, FilterAndSearchKeyWord) {
-    console.log(" City Name ===> " + cityName);
-    console.log(" Search/Filter Key ===> " + FilterAndSearchKeyWord);
+    console.log(` City name is  ==>` + cityName);
+    console.log(` Filter And Search keyword is  ==>` + FilterAndSearchKeyWord);
 
     const propertyPage = new DraftHomePage(this.page);
 
@@ -21,7 +21,7 @@ export class DraftHomePageActions {
     await propertyPage.resultValue.waitFor({ state: "visible" });
     const beforeFilterCount = await propertyPage.resultValue.allTextContents();
 
-    console.log(" Before Applying filter with KeyWord Garage Count is ===> " + beforeFilterCount);
+    console.log(` Before applying the filter ${FilterAndSearchKeyWord} the count is  ==>` + beforeFilterCount);
 
     // Checking for the visibility of FILTER button and clicking it
     await propertyPage.filters.waitFor({ state: "visible" });
@@ -45,7 +45,7 @@ export class DraftHomePageActions {
     await propertyPage.resultValue.waitFor({ state: "visible" });
     const afterFilterCount = await propertyPage.resultValue.allTextContents();
 
-    console.log(" After Applying filter with KeyWord Garage Count is ===> " + afterFilterCount);
+    console.log(` After applying the filter ${FilterAndSearchKeyWord} the count is  ==>` + afterFilterCount);
 
     // Navigating to the first property of the list
     await propertyPage.firstPropertyOfTheResult.waitFor({ state: "visible" });
@@ -54,11 +54,15 @@ export class DraftHomePageActions {
 
     // Scrolling down to the desctiption and extracting the text
     await propertyPage.page.mouse.down();
-    const pageContent = await propertyPage.descriptionText.allTextContents();
+    const pageContent = await propertyPage.features.allTextContents();
 
     // Checking whether the property description contains the keyWord "garage"
 
     var description = `${pageContent}`;
+
+    description = description.toLowerCase();
+
+    console.log("description==>"+description);
 
     var SearchTextVisibility = false;
 
@@ -67,7 +71,7 @@ export class DraftHomePageActions {
     } else {
       SearchTextVisibility = false;
     }
-    console.log(" Search Text garage is visible in description ==>" + SearchTextVisibility);
+    console.log(` Search Text ${FilterAndSearchKeyWord} is visible in description ==>` + SearchTextVisibility);
 
     //Asserting whether the description contains the keyword "garage"
 

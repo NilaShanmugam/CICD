@@ -21,7 +21,12 @@ export class DraftHomePageActions {
         await propertyPage.searchBox.waitFor({ state: "visible" });
         await propertyPage.searchBox.fill(cityName);
         await propertyPage.cityName.click();
+        
 
+        await propertyPage.resultValue.waitFor({ state: "visible" });
+        const beforeFilterCount = await propertyPage.resultValue.allTextContents();
+
+        console.log(" Before Applying filter with KeyWord Garage Count is ===> " + beforeFilterCount);
 
         // Checking for the visibility of FILTER button and clicking it
         await propertyPage.filters.waitFor({ state: "visible" });
@@ -49,15 +54,15 @@ export class DraftHomePageActions {
 
         //Checking for the visiblity of Heading which shows the Properties for Sale Results Count
         await propertyPage.resultValue.waitFor({ state: "visible" });
-        const actualText = await propertyPage.resultValue.allTextContents();
+        const afterFilterCount = await propertyPage.resultValue.allTextContents();
 
 
-        console.log(" ACTUAL COUNT ===> " + actualText);
+        console.log(" After Applying filter with KeyWord Garage Count is ===> " + afterFilterCount);
 
         // Navigating to the first property of the list
         await propertyPage.firstPropertyOfTheResult.waitFor({ state: "visible" });
         await propertyPage.firstPropertyOfTheResult.click();
-        await propertyPage.page.waitForTimeout(3000);
+        await propertyPage.page.waitForTimeout(4000);
 
      
         // Scrolling down to the desctiption and extracting the text

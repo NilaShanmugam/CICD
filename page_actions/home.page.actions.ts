@@ -7,6 +7,26 @@ export class DraftHomePageActions {
     this.page = page;
   }
 
+  // Checking whether filterAndSearchKeyWord is present in the Page 
+  stringComparison = (filterAndSearchKeyWord, pageContent) => {
+    let searchTextVisibility = false;
+
+    if (
+      new RegExp("\\b" + filterAndSearchKeyWord.toLowerCase() + "\\b").test(
+        pageContent.valueOf()
+      )
+    ) {
+      searchTextVisibility = true;
+    } else {
+      searchTextVisibility = false;
+    }
+    console.log(
+      ` Search Text ${filterAndSearchKeyWord} is visible in description ==>` +
+        searchTextVisibility
+    );
+
+    return searchTextVisibility;
+  };
   async searchAndfilterValidation(cityName, filterAndSearchKeyWord = "") {
     console.log(` City name is  ==>` + cityName);
     console.log(` Filter And Search keyword is  ==>` + filterAndSearchKeyWord);
@@ -81,27 +101,16 @@ export class DraftHomePageActions {
 
       // Checking whether the property features with description contains the FilterAndSearchKeyWord
 
-      const pageContent = `${featureContent}`.toLowerCase() +`${descriptionContent}`.toLowerCase() +`${facilityContent}`.toLowerCase();
+      const pageContent = await (`${featureContent}`.toLowerCase() +
+        `${descriptionContent}`.toLowerCase() +
+        `${facilityContent}`.toLowerCase());
 
-      var SearchTextVisibility = false;
-
-      if (
-        new RegExp("\\b" + filterAndSearchKeyWord.toLowerCase() + "\\b").test(
-          pageContent.valueOf()
-        )
-      ) {
-        SearchTextVisibility = true;
-      } else {
-        SearchTextVisibility = false;
-      }
-      console.log(
-        ` Search Text ${filterAndSearchKeyWord} is visible in description ==>` +
-          SearchTextVisibility
+      let result = await this.stringComparison(
+        filterAndSearchKeyWord,
+        pageContent
       );
 
-      //Asserting whether the description contains the FilterAndSearchKeyWord
-
-      expect(SearchTextVisibility).toBeTruthy();
+      expect(result).toBeTruthy();
     }
   }
 }

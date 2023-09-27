@@ -24,6 +24,14 @@ test.describe("Validating whether filter is applied Properly and the result is p
     await propertyPageActions.searchAndfilterValidation("Dublin", "fencing");
   });
 
+  test("Verify Search & Filter functionality  - Dublin & PlayGround", async ({
+    page,
+  }) => {
+    page.setDefaultTimeout(60000);
+    const propertyPageActions = new DraftHomePageActions(page);
+    await propertyPageActions.searchAndfilterValidation("Dublin", "playground");
+  });
+
   test("Verify Search & Filter functionality  - Dublin & invalid Search key", async ({
     page,
   }) => {

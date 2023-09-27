@@ -11,40 +11,24 @@ test.describe("Validating whether filter is applied Properly and the result is p
   test("Verify Search & Filter functionality  - Dublin & Garage", async ({
     page,
   }) => {
-    // You can give keyWords from here to Filter and Search
     page.setDefaultTimeout(80000);
-    const FilterAndSearchKeyWord = "garage";
-    const cityName = "Dublin";
     const propertyPageActions = new DraftHomePageActions(page);
-    await propertyPageActions.searchAndfilterValidation(
-      cityName,
-      FilterAndSearchKeyWord
-    );
+    await propertyPageActions.searchAndfilterValidation("Dublin", "garage");
   });
 
-  test("Verify Search & Filter functionality  - Dublin & Car Parking", async ({
+  test("Verify Search & Filter functionality  - Dublin & Fencing", async ({
     page,
   }) => {
     page.setDefaultTimeout(60000);
-    const FilterAndSearchKeyWord = "car parking";
-    const cityName = "Dublin";
     const propertyPageActions = new DraftHomePageActions(page);
-    await propertyPageActions.searchAndfilterValidation(
-      cityName,
-      FilterAndSearchKeyWord
-    );
+    await propertyPageActions.searchAndfilterValidation("Dublin", "fencing");
   });
 
   test("Verify Search & Filter functionality  - Dublin & invalid Search key", async ({
     page,
   }) => {
     page.setDefaultTimeout(60000);
-    const FilterAndSearchKeyWord = "invalid";
-    const cityName = "Dublin";
     const propertyPageActions = new DraftHomePageActions(page);
-    await propertyPageActions.searchAndfilterValidation(
-      cityName,
-      FilterAndSearchKeyWord
-    );
+    await propertyPageActions.searchAndfilterValidation("Dublin", "invalid");
   });
 });

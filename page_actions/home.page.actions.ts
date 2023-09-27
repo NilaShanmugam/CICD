@@ -7,9 +7,9 @@ export class DraftHomePageActions {
     this.page = page;
   }
 
-  async searchAndfilterValidation(cityName, FilterAndSearchKeyWord) {
+  async searchAndfilterValidation(cityName, filterAndSearchKeyWord = "") {
     console.log(` City name is  ==>` + cityName);
-    console.log(` Filter And Search keyword is  ==>` + FilterAndSearchKeyWord);
+    console.log(` Filter And Search keyword is  ==>` + filterAndSearchKeyWord);
 
     const propertyPage = new DraftHomePage(this.page);
 
@@ -22,38 +22,38 @@ export class DraftHomePageActions {
     const beforeFilterCount = await propertyPage.resultValue.allTextContents();
 
     console.log(
-      ` Before applying the filter ${FilterAndSearchKeyWord} the count is  ==>` +
+      ` Before applying the filter ${filterAndSearchKeyWord} the count is  ==>` +
         beforeFilterCount
     );
 
-    // Checking for the visibility of FILTER button and clicking it
+    // Checking for the visibility of Filter button and clicking it
     await propertyPage.filters.waitFor({ state: "visible" });
     await propertyPage.filters.click();
 
-    // SCROLLING down and checking for the visibility of Keyword search box
+    // Scrolling down and checking for the visibility of Keyword search box
     await propertyPage.page.mouse.down();
     await propertyPage.keyWordSearch.waitFor({ state: "visible" });
 
     //Filtering using the FilterAndSearchKeyWord and clicking on ShowResults button
 
-    await propertyPage.keyWordSearch.fill(FilterAndSearchKeyWord);
-    await propertyPage.page.waitForTimeout(500);
+    await propertyPage.keyWordSearch.fill(filterAndSearchKeyWord);
+    await propertyPage.page.waitForTimeout(200);
     await propertyPage.showResultsButton.waitFor({ state: "visible" });
     await propertyPage.showResultsButton.click();
 
     // It is taking 3-5 seconds for the value to get updated so introduced a wait
-    await propertyPage.page.waitForTimeout(5000);
+    await propertyPage.page.waitForTimeout(4000);
 
     //Checking for the visiblity of Heading which shows the Properties for Sale Results Count
     await propertyPage.resultValue.waitFor({ state: "visible" });
     const afterFilterCount = await propertyPage.resultValue.allTextContents();
 
     console.log(
-      ` After applying the filter ${FilterAndSearchKeyWord} the count is  ==>` +
+      ` After applying the filter ${filterAndSearchKeyWord} the count is  ==>` +
         afterFilterCount
     );
 
-    if (FilterAndSearchKeyWord === "invalid") {
+    if (filterAndSearchKeyWord === "invalid") {
       await propertyPage.resultValue.waitFor({ state: "visible" });
       const propertyCount = await propertyPage.resultValue.allTextContents();
 
@@ -73,19 +73,21 @@ export class DraftHomePageActions {
       // Scrolling down to the features and extracting the text
       await propertyPage.page.mouse.down();
       await propertyPage.page.waitForTimeout(1000);
-      const pageContent = await propertyPage.features.allTextContents();
 
-      // Checking whether the property featurs contains the FilterAndSearchKeyWord
+      const featureContent = await propertyPage.features.allTextContents();
+      const descriptionContent =
+        await propertyPage.description.allTextContents();
+      const facilityContent = await propertyPage.facilities.allTextContents();
 
-      var features = `${pageContent}`;
+      // Checking whether the property features with description contains the FilterAndSearchKeyWord
 
-      features = features.toLowerCase();
+      const pageContent = `${featureContent}`.toLowerCase() +`${descriptionContent}`.toLowerCase() +`${facilityContent}`.toLowerCase();
 
       var SearchTextVisibility = false;
 
       if (
-        new RegExp("\\b" + FilterAndSearchKeyWord + "\\b").test(
-          features.valueOf()
+        new RegExp("\\b" + filterAndSearchKeyWord.toLowerCase() + "\\b").test(
+          pageContent.valueOf()
         )
       ) {
         SearchTextVisibility = true;
@@ -93,7 +95,7 @@ export class DraftHomePageActions {
         SearchTextVisibility = false;
       }
       console.log(
-        ` Search Text ${FilterAndSearchKeyWord} is visible in description ==>` +
+        ` Search Text ${filterAndSearchKeyWord} is visible in description ==>` +
           SearchTextVisibility
       );
 

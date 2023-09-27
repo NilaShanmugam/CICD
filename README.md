@@ -39,7 +39,7 @@
 
 
 
-       ```npx playwright test landing-page.spec.ts --headed```
+       ```npx playwright test landing-page.spec.ts --headed --workers 1```
 
 4. To open last HTML report run, use below command
 
@@ -48,9 +48,7 @@
        ```npx playwright show-report```
 
 
-![image](https://github.com/NilaShanmugam/Distilled-Project/assets/59618634/e61064ba-97c9-4b46-a37f-33a67e69a484)
-
-![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/21e96468-fef0-438e-b7af-6777fe7e5091)
+![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/846a2309-18d6-420c-8131-a0e225169b02)
 
 
 # CI/CD Pipeline Integration to my current Repo
@@ -58,4 +56,4 @@
 1. Whenever there is new commit and changes are pushed to main branch "Actions" will be triggered automatically
 2. We can trigger the run manually also by using "Rerun-Jobs" in Actions Tab
 
-![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/8a75cf92-c1b4-49bf-956d-47733941dffd)
+![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/fe17ec73-ca95-400f-974f-b17da3d5f182)

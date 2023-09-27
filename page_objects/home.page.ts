@@ -10,6 +10,9 @@ export class DraftHomePage {
   readonly resultValue: Locator;
   readonly firstPropertyOfTheResult: Locator;
   readonly features: Locator;
+  readonly description: Locator;
+  readonly facilities : Locator;
+
 
   //This file contains the locators
   constructor(page: Page) {
@@ -23,5 +26,7 @@ export class DraftHomePage {
     this.resultValue = page.locator("//div/h1[@data-testid='search-h1']");
     this.firstPropertyOfTheResult = page.locator( "(//div/ul[@data-testid='results'])[1]");
     this.features = page.locator("//div[@data-testid='features']");
+    this.description = page.locator("//div[@data-testid='description']");
+    this.facilities = page.locator("//div[@data-testid='facilities']");
   }
 }

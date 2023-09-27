@@ -3,62 +3,86 @@ import { DraftHomePage } from '../page_objects/home.page';
 
 export class DraftHomePageActions {
 
-readonly page: Page;
+    readonly page: Page;
 
-constructor(page: Page) {
-this.page = page;
-}
+    constructor(page: Page) {
+        this.page = page;
+    }
 
-async searchAndfilterValidation(){
-   
-    const propertyPage = new DraftHomePage(this.page);
-    
-    // Checking for the visibility of the SearchBox in home page and entering the value "Dublin" in the searchBox 
-    await propertyPage.searchBox.waitFor({state:"visible"});
-    await propertyPage.searchBox.fill('Dublin'); 
-    
-    // Among the list of values generated picking the first value in the list
-    await propertyPage.cityName.click();
-    
-    // Checking for the visibility of filter button and clicking it
-    await propertyPage.filters.waitFor({state:"visible"});
-    await propertyPage.filters.click();
-    
+    async searchAndfilterValidation(cityName,FilterAndSearchKeyWord) {
+        
+        console.log(" City Name ===> " + cityName);
 
-    // Checking for the visibility of Keyword search box and filling it with the value "garage"
-    await propertyPage.page.mouse.down();
-    await propertyPage.keyWordSearch.waitFor({state:"visible"});
-    await propertyPage.keyWordSearch.fill('garage');
-    
-    // Checking for the visiblity of "Show Results" button and Performing Click action
-    await propertyPage.showResultsButton.waitFor({state:"visible"});
-    await propertyPage.showResultsButton.click();
-    
-    // It is taking 2-3 seconds for the value to get updated so introduced a wait
-    await propertyPage.page.waitForTimeout(2000);
-    
-    //Checking for the visiblity of Heading which shows the Properties for Sale Results Count
-    await propertyPage.resultValue.waitFor({state:"visible"});
-    const actualText = await propertyPage.resultValue.allTextContents();
-    
-    // Checking for the filter button count to cross-verify if both the value listed is same
-    await propertyPage.filters.waitFor({state:"visible"});
-    await propertyPage.filters.click();
-    
-    await propertyPage.showResultsButton.waitFor({state:"visible"});
-    const expectedText = await propertyPage.showResultsButton.allTextContents();
-    
-    var splitOnSpace = expectedText.toString();
-    var splittedArr = splitOnSpace.split(" ");   
-    var expectedCount = splittedArr[2];   
-    var actualCount = actualText.toString();
-    
-    console.log("ACTUAL COUNT ===> "+actualCount);
+        console.log(" Search/Filter Key ===> " + FilterAndSearchKeyWord);
 
-    console.log("COUNT DISPLAYED ===> "+splitOnSpace);
+        const propertyPage = new DraftHomePage(this.page);
 
-    // Asserting whethere the result count is properly generated
-    expect(actualCount).toContain(expectedCount);
+        // Checking for the visibility of the SearchBox in home page and entering the value "Dublin" in the searchBox and clicking it
+        await propertyPage.searchBox.waitFor({ state: "visible" });
+        await propertyPage.searchBox.fill(cityName);
+        await propertyPage.cityName.click();
+
+
+        // Checking for the visibility of FILTER button and clicking it
+        await propertyPage.filters.waitFor({ state: "visible" });
+        await propertyPage.filters.click();
+
+
+        // SCROLLING down and checking for the visibility of Keyword search box 
+        await propertyPage.page.mouse.down();
+        await propertyPage.keyWordSearch.waitFor({ state: "visible" });
+
+
+        //Filtering using the keyword "Garage" and clicking on ShowResults button
+
+        await propertyPage.keyWordSearch.fill(FilterAndSearchKeyWord);
+        await propertyPage.page.waitForTimeout(1000);
+        await propertyPage.showResultsButton.waitFor({ state: "visible" });
+        await propertyPage.showResultsButton.click();
+
+
     
+        // It is taking 2-3 seconds for the value to get updated so introduced a wait
+        await propertyPage.page.waitForTimeout(3000);
+
+
+
+        //Checking for the visiblity of Heading which shows the Properties for Sale Results Count
+        await propertyPage.resultValue.waitFor({ state: "visible" });
+        const actualText = await propertyPage.resultValue.allTextContents();
+
+
+        console.log(" ACTUAL COUNT ===> " + actualText);
+
+        // Navigating to the first property of the list
+        await propertyPage.firstPropertyOfTheResult.waitFor({ state: "visible" });
+        await propertyPage.firstPropertyOfTheResult.click();
+        await propertyPage.page.waitForTimeout(3000);
+
+     
+        // Scrolling down to the desctiption and extracting the text
+        await propertyPage.page.mouse.down();
+        const pageContent = await propertyPage.descriptionText.allTextContents();
+
+
+        // Checking whether the property description contains the keyWord "garage"
+
+        var description = `${pageContent}`;
+
+        var SearchTextVisibility = false;
+
+        if (new RegExp("\\b" + FilterAndSearchKeyWord + "\\b").test(description.valueOf())) {
+            SearchTextVisibility = true;
+        } else {
+            SearchTextVisibility = false;
+        }
+        console.log(" Search Text garage is visible in description ==>" + SearchTextVisibility);
+
+
+       
+        //Asserting whether the description contains the keyword "garage"
+
+        expect(SearchTextVisibility).toBeTruthy();
+
     }
 }

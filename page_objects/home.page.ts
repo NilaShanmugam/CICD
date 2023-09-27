@@ -9,6 +9,8 @@ readonly filters:Locator;
 readonly keyWordSearch: Locator;
 readonly showResultsButton: Locator;
 readonly resultValue: Locator;
+readonly firstPropertyOfTheResult: Locator;
+readonly descriptionText: Locator;
 
 //This file contains the locators
 constructor(page: Page) {
@@ -20,5 +22,7 @@ this.filters = page.locator("//button[@data-testid='open-filters-modal']");
 this.keyWordSearch = page.locator("//div/input[@id='keywordtermsModal']");
 this.showResultsButton = page.locator("//div/button[@data-testid='filters-modal-show-results-button']");
 this.resultValue = page.locator("//div/h1[@data-testid='search-h1']");
+this.firstPropertyOfTheResult = page.locator("(//div/ul[@data-testid='results'])[1]");
+this.descriptionText = page.locator("//div[@data-testid='description']");
 }
 }

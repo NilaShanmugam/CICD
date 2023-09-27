@@ -24,7 +24,7 @@ export class DraftHomePage {
     this.keyWordSearch = page.locator("//div/input[@id='keywordtermsModal']");
     this.showResultsButton = page.locator("//div/button[@data-testid='filters-modal-show-results-button']");
     this.resultValue = page.locator("//div/h1[@data-testid='search-h1']");
-    this.firstPropertyOfTheResult = page.locator("//div/ul[@data-testid='results']/li[1])");
+    this.firstPropertyOfTheResult = page.locator("(//div/ul[@data-testid='results']/li[1])");
     this.features = page.locator("//div[@data-testid='features']");
     this.description = page.locator("//div[@data-testid='description']");
     this.facilities = page.locator("//div[@data-testid='facilities']");

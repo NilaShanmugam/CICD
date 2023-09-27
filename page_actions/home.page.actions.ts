@@ -13,7 +13,7 @@ export class DraftHomePageActions {
 
     const propertyPage = new DraftHomePage(this.page);
 
-    // Checking for the visibility of the SearchBox in home page and entering the value "Dublin" in the searchBox and clicking it
+    // Checking for the visibility of the SearchBox in home page and entering the value of cityName in the searchBox and clicking it
     await propertyPage.searchBox.waitFor({ state: "visible" });
     await propertyPage.searchBox.fill(cityName);
     await propertyPage.cityName.click();
@@ -21,7 +21,10 @@ export class DraftHomePageActions {
     await propertyPage.resultValue.waitFor({ state: "visible" });
     const beforeFilterCount = await propertyPage.resultValue.allTextContents();
 
-    console.log(` Before applying the filter ${FilterAndSearchKeyWord} the count is  ==>` + beforeFilterCount);
+    console.log(
+      ` Before applying the filter ${FilterAndSearchKeyWord} the count is  ==>` +
+        beforeFilterCount
+    );
 
     // Checking for the visibility of FILTER button and clicking it
     await propertyPage.filters.waitFor({ state: "visible" });
@@ -31,50 +34,72 @@ export class DraftHomePageActions {
     await propertyPage.page.mouse.down();
     await propertyPage.keyWordSearch.waitFor({ state: "visible" });
 
-    //Filtering using the keyword "Garage" and clicking on ShowResults button
+    //Filtering using the FilterAndSearchKeyWord and clicking on ShowResults button
 
     await propertyPage.keyWordSearch.fill(FilterAndSearchKeyWord);
     await propertyPage.page.waitForTimeout(1000);
     await propertyPage.showResultsButton.waitFor({ state: "visible" });
     await propertyPage.showResultsButton.click();
 
-    // It is taking 2-3 seconds for the value to get updated so introduced a wait
-    await propertyPage.page.waitForTimeout(3000);
+    // It is taking 3-5 seconds for the value to get updated so introduced a wait
+    await propertyPage.page.waitForTimeout(5000);
 
     //Checking for the visiblity of Heading which shows the Properties for Sale Results Count
     await propertyPage.resultValue.waitFor({ state: "visible" });
     const afterFilterCount = await propertyPage.resultValue.allTextContents();
 
-    console.log(` After applying the filter ${FilterAndSearchKeyWord} the count is  ==>` + afterFilterCount);
+    console.log(
+      ` After applying the filter ${FilterAndSearchKeyWord} the count is  ==>` +
+        afterFilterCount
+    );
 
-    // Navigating to the first property of the list
-    await propertyPage.firstPropertyOfTheResult.waitFor({ state: "visible" });
-    await propertyPage.firstPropertyOfTheResult.click();
-    await propertyPage.page.waitForTimeout(4000);
+    if (FilterAndSearchKeyWord === "invalid") {
+      await propertyPage.resultValue.waitFor({ state: "visible" });
+      const propertyCount = await propertyPage.resultValue.allTextContents();
 
-    // Scrolling down to the desctiption and extracting the text
-    await propertyPage.page.mouse.down();
-    const pageContent = await propertyPage.features.allTextContents();
+      var splitOnSpace = propertyCount.toString();
+      var splittedArr = splitOnSpace.split(" ");
+      var expectedCount = splittedArr[0];
+      var actualCount = "0 Properties for Sale";
 
-    // Checking whether the property description contains the keyWord "garage"
-
-    var description = `${pageContent}`;
-
-    description = description.toLowerCase();
-
-    console.log("description==>"+description);
-
-    var SearchTextVisibility = false;
-
-    if (new RegExp("\\b" + FilterAndSearchKeyWord + "\\b").test(description.valueOf())) {
-      SearchTextVisibility = true;
+      // Asserting whethere the result count is properly generated
+      expect(actualCount).toContain(expectedCount);
     } else {
-      SearchTextVisibility = false;
+      // Navigating to the first property of the list
+      await propertyPage.firstPropertyOfTheResult.waitFor({ state: "visible" });
+      await propertyPage.firstPropertyOfTheResult.click();
+      await propertyPage.page.waitForTimeout(2000);
+
+      // Scrolling down to the features and extracting the text
+      await propertyPage.page.mouse.down();
+      await propertyPage.page.waitForTimeout(3000);
+      const pageContent = await propertyPage.features.allTextContents();
+
+      // Checking whether the property featurs contains the FilterAndSearchKeyWord
+
+      var features = `${pageContent}`;
+
+      features = features.toLowerCase();
+
+      var SearchTextVisibility = false;
+
+      if (
+        new RegExp("\\b" + FilterAndSearchKeyWord + "\\b").test(
+          features.valueOf()
+        )
+      ) {
+        SearchTextVisibility = true;
+      } else {
+        SearchTextVisibility = false;
+      }
+      console.log(
+        ` Search Text ${FilterAndSearchKeyWord} is visible in description ==>` +
+          SearchTextVisibility
+      );
+
+      //Asserting whether the description contains the FilterAndSearchKeyWord
+
+      expect(SearchTextVisibility).toBeTruthy();
     }
-    console.log(` Search Text ${FilterAndSearchKeyWord} is visible in description ==>` + SearchTextVisibility);
-
-    //Asserting whether the description contains the keyword "garage"
-
-    expect(SearchTextVisibility).toBeTruthy();
   }
 }

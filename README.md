@@ -50,7 +50,7 @@
 
 ![image](https://github.com/NilaShanmugam/Distilled-Project/assets/59618634/e61064ba-97c9-4b46-a37f-33a67e69a484)
 
-![image](https://github.com/NilaShanmugam/Distilled-Project/assets/59618634/48f76c56-2acb-4a98-ac69-cd7ce2767063)
+![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/21e96468-fef0-438e-b7af-6777fe7e5091)
 
 
 # CI/CD Pipeline Integration to my current Repo
@@ -58,4 +58,4 @@
 1. Whenever there is new commit and changes are pushed to main branch "Actions" will be triggered automatically
 2. We can trigger the run manually also by using "Rerun-Jobs" in Actions Tab
 
-![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/c3ad853c-9308-477e-896d-34bfdfeb8111)
+![image](https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/8a75cf92-c1b4-49bf-956d-47733941dffd)

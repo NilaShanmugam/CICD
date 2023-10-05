@@ -19,7 +19,7 @@
 
    <img width="193" alt="Screenshot 2023-09-23 at 12 43 30 PM" src="https://github.com/NilaShanmugam/Distilled-PlayWright-CICD/assets/59618634/249c7ac0-253d-46f4-86dd-0ad5404f64b0">
 
-6. Using the below command in terminal, you can install all different browsers in Playwright. 
+6. Using the below command in terminal, you can install all different browsers in Playwright.
 
 
        ```npx playwright install --with-deps```
